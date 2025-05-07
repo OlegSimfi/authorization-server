@@ -1,19 +1,29 @@
 import { test, expect } from '@playwright/test';
 
-const uniqueLogin = `test_user_${Date.now()}`; // Generate a unique login using a timestamp
 
-let testUser = {
-    login: 'test_user',
+let userCredentials = {
+    login: `test_user_${Date.now()}`,
     password: 'password123',
+    password2: 'password123',
 };
 
 test.describe('API Tests', () => {
+    test.beforeAll(async ({ request, baseURL }) => {
+        const response = await request.post(`${baseURL}/signup`, {
+            data: {
+                login: userCredentials.login,
+                password: userCredentials.password,
+                password2: userCredentials.password2,
+            },
+        });
+        console.log('Test user creation response status:', response.status());
+    });
     test('POST /signup - should create a new user', async ({ request, baseURL }) => {
         const response = await request.post(`${baseURL}/signup`, {
             data: {
-                login: uniqueLogin,
-                password: testUser.password,
-                password2: testUser.password,
+                login: `new_user_${Date.now()}`,
+                password: 'password123',
+                password2: 'password123',
             },
         });
 
@@ -26,8 +36,8 @@ test.describe('API Tests', () => {
     test('POST /login - should log in the user', async ({ request, baseURL }) => {
         const response = await request.post(`${baseURL}/login`, {
             data: {
-                login: testUser.login,
-                password: testUser.password,
+                login: userCredentials.login,
+                password: userCredentials.password,
             },
         });
         expect(response.status()).toBe(200);
@@ -40,8 +50,8 @@ test.describe('API Tests', () => {
     test('GET /get-user-info - should return user info for authorized user', async ({ request, baseURL }) => {
         const loginResponse = await request.post(`${baseURL}/login`, {
             data: {
-                login: testUser.login,
-                password: testUser.password,
+                login: userCredentials.login,
+                password: userCredentials.password,
             },
         });
         const cookies = loginResponse.headers()['set-cookie'];
@@ -53,14 +63,14 @@ test.describe('API Tests', () => {
         });
 
         expect(response.status()).toBe(200);
-        expect(await response.json()).toHaveProperty('username', 'test_user');
+        expect(await response.json()).toHaveProperty('username', userCredentials.login);
     });
 
     test('POST /logout - should log out the user', async ({ request, baseURL }) => {
         const loginResponse = await request.post(`${baseURL}/login`, {
             data: {
-                login: testUser.login,
-                password: testUser.password,
+                login: userCredentials.login,
+                password: userCredentials.password,
             },
         });
         const cookies = loginResponse.headers()['set-cookie'];
@@ -86,8 +96,8 @@ test.describe('Negative API Tests', () => {
     test('POST /signup - should fail with mismatched passwords', async ({ request, baseURL }) => {
         const response = await request.post(`${baseURL}/signup`, {
             data: {
-                login: uniqueLogin,
-                password: testUser.password,
+                login: userCredentials.login,
+                password: userCredentials.password,
                 password2: 'differentPassword',
             },
         });
