@@ -27,10 +27,6 @@ export class HomePage {
         await this.logoutButton.click();
     }
 
-    isGreetingMessageVisible(): Promise<boolean> {
-        return this.greetingMessage.isVisible();
-    }
-
     isLogoutButtonVisible(): Promise<boolean> {
         return this.logoutButton.isVisible();
     }

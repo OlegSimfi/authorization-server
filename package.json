@@ -6,7 +6,8 @@
     "prestart": "node swagger.js",
     "start": "node index.js",
     "swagger": "node swagger.js",
-    "test_api": "playwright test tests/api-spec"
+    "test_api": "playwright test tests/api-spec",
+    "test_e2e": "playwright test tests/e2e-spec"
   },
   "keywords": [],
   "author": "",

@@ -32,6 +32,7 @@ npm run start
 
 ```bash
 npm run test_api
+npm run test_e2e
 ```
 
 ## Pages

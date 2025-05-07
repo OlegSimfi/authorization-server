@@ -23,7 +23,7 @@ test.describe('Login Page UI Tests', () => {
 
     test('should verify the home page', async ({ page }) => {
         const homePage = new HomePage(page);
-        await page.goto('/home');
+        await homePage.navigate()
 
         await expect(page).toHaveURL('/home');
         expect(await homePage.isLogoutButtonVisible()).toBe(true);
@@ -33,7 +33,7 @@ test.describe('Login Page UI Tests', () => {
     test('should logout successfully', async ({ page }) => {
         const loginPage = new LoginPage(page);
         const homePage = new HomePage(page);
-        await page.goto('/home');
+        await homePage.navigate()
         await homePage.clickLogoutButton();
 
         await expect(page).toHaveURL('/login');
