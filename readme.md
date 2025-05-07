@@ -31,7 +31,7 @@ npm run start
 ## Tests
 
 ```bash
-npm run test
+npm run test_api
 ```
 
 ## Pages

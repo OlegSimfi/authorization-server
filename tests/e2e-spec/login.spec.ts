@@ -39,5 +39,6 @@ test.describe('Login Page UI Tests', () => {
         await loginPage.enterPassword('wrong_password');
         await loginPage.clickLoginButton();
 
-        await expect(loginPage.getErrorMessage()).toHaveText(INVALID_CREDENTIALS_ERROR);    });
+        await expect(loginPage.getErrorMessage()).toHaveText(INVALID_CREDENTIALS_ERROR);
+    });
 });
