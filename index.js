@@ -11,7 +11,7 @@ const users = {test: 'test'}
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json')
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/api-spec-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const session = require('express-session');
 
