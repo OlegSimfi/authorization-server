@@ -16,7 +16,7 @@ test.describe('API Tests', () => {
                 password2: userCredentials.password2,
             },
         });
-        console.log('Test user creation response status:', response.status());
+        console.log('Test user creation response status:', response.status(), 'username:', userCredentials.login);
     });
     test('POST /signup - should create a new user', async ({ request, baseURL }) => {
         const response = await request.post(`${baseURL}/signup`, {
