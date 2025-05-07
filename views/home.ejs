@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./style.css" />
+  <title>Home</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="login-form">
+      <h1>Hello <%= username %></h1>
+      <a class="submit" href="/logout" style="width: 100%"> <span class="submit-text"> Logout </span> </a>
+    </div>
+  </div>
+
+  <canvas></canvas>
+  <script src="./lib/jquery.min.js"></script>
+  <script src="./canvas.js"></script>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/88/three.min.js"></script>
+  <script defer src="./bg.js"></script>
+</body>
+</html>
